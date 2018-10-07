@@ -20,9 +20,14 @@ public class BinarySerachTree {
         tree.insert(60);
         tree.insert(80);
 
-        // printInOrder inorder traversal of the BST
+        System.out.println("*** In order ***");
         tree.printInOrder();
+        System.out.println("\n\n*** Pre order ***");
+        tree.printPreOrder();
+        System.out.println("\n  \n*** Post order ***");
+        tree.printPostOrder();
 
+        System.out.println("\n");
         System.out.println(tree.search(60).getData());
 
     }

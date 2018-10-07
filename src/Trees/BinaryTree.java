@@ -28,14 +28,38 @@ public class BinaryTree {
     }
 
     public void printInOrder() {
-        printRec(_root);
+        traverseInOrder(_root);
     }
 
-    private void printRec(Node root) {
+    private void traverseInOrder(Node root) {
         if (root != null) {
-            printRec(root.getLeft());
-            System.out.println(root.getData());
-            printRec(root.getRigth());
+            traverseInOrder(root.getLeft());
+            System.out.print(root.getData() + " ");
+            traverseInOrder(root.getRigth());
+        }
+    }
+
+    public void printPreOrder() {
+        traversePreOrder(_root);
+    }
+
+    private void traversePreOrder(Node root) {
+        if (root != null) {
+            System.out.print(root.getData() + " ");
+            traversePreOrder(root.getLeft());
+            traversePreOrder(root.getRigth());
+        }
+    }
+
+    public void printPostOrder() {
+        traversePostOrder(_root);
+    }
+
+    private void traversePostOrder(Node root) {
+        if (root != null) {
+            traversePostOrder(root.getLeft());
+            traversePostOrder(root.getRigth());
+            System.out.print(root.getData() + " ");
         }
     }
 
