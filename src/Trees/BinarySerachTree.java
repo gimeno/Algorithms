@@ -26,6 +26,8 @@ public class BinarySerachTree {
         tree.printPreOrder();
         System.out.println("\n  \n*** Post order ***");
         tree.printPostOrder();
+        System.out.println("\n  \n*** Level order ***");
+        tree.printLevelOrder();
 
         System.out.println("\n");
         System.out.println(tree.search(60).getData());

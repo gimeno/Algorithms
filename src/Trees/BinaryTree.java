@@ -1,5 +1,8 @@
 package Trees;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinaryTree {
 
     private Node _root;
@@ -62,6 +65,27 @@ public class BinaryTree {
             System.out.print(root.getData() + " ");
         }
     }
+
+    public void printLevelOrder() {
+        Queue<Node> queue = new LinkedList<Node>();
+
+        queue.add(_root);
+        while (!queue.isEmpty()) {
+            Node tempNode = queue.poll();
+            System.out.print(tempNode.getData() + " ");
+
+            /*Enqueue left child */
+            if (tempNode.getLeft() != null) {
+                queue.add(tempNode.getLeft());
+            }
+
+            /*Enqueue right child */
+            if (tempNode.getRigth() != null) {
+                queue.add(tempNode.getRigth());
+            }
+        }
+    }
+
 
     public Node search(int value) {
         return searchRec(_root, value);
