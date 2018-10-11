@@ -32,6 +32,26 @@ public class BinarySerachTree {
         System.out.println("\n");
         System.out.println(tree.search(60).getData());
 
+        System.out.println("\n *** Second example ***");
+        tree = new BinaryTree();
+        tree.insert(5);
+        tree.insert(2);
+        tree.insert(3);
+        tree.insert(6);
+        tree.insert(4);
+
+        System.out.println("*** In order ***");
+        tree.printInOrder();
+        System.out.println("\n\n*** Pre order ***");
+        tree.printPreOrder();
+        System.out.println("\n  \n*** Post order ***");
+        tree.printPostOrder();
+        System.out.println("\n  \n*** Level order ***");
+        tree.printLevelOrder();
+
+        System.out.println("\n");
+        System.out.println(tree.search(3).getData());
+
     }
 
 
