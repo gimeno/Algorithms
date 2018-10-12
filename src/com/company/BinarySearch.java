@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class BinarySearch {
 
     public static void main(String[] args) {
-        int[] arr = {1,2,3,4,5,6,7,8,9,10};
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         search(arr, 2);
         search(arr, 5);
         search(arr, 8);
@@ -13,7 +13,8 @@ public class BinarySearch {
     }
 
     private static void search(int[] arr, int number) {
-        int index = binarySearch(arr, number);
+        int index = binarySearchRec(arr, number);
+//        int index = binarySearch(arr, number);
         if (index > -1) {
             System.out.println("Is " + number + " in index " + index + "? " + (arr[index] == number));
         } else {
@@ -21,14 +22,32 @@ public class BinarySearch {
         }
     }
 
-    private static int binarySearch(int[] arr, int value) {
+    private static int binarySearch(int[] a, int x) {
+        int low = 0;
+        int high = a.length - 1;
+        int mid;
+
+        while (low <= high) {
+            mid = (low + high) / 2;
+            if (a[mid] < x) {
+                low = mid + 1;
+            } else if (a[mid] > x) {
+                high = mid - 1;
+            } else {
+                return mid;
+            }
+        }
+        return -1; // Error
+    }
+
+    private static int binarySearchRec(int[] arr, int value) {
         return binarySearch(arr, 0, arr.length - 1, value);
     }
 
     private static int binarySearch(int[] arr, int lowIndex, int highIndex, int value) {
         if (highIndex >= lowIndex) {
 
-            int index = (highIndex - lowIndex) / 2 + lowIndex;
+            int index = (highIndex + lowIndex) / 2;
 
             if (arr[index] == value) {
                 return index;
