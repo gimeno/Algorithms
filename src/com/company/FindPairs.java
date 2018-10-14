@@ -7,6 +7,12 @@ import java.util.*;
  */
 public class FindPairs {
     public static void main(String[] args) {
+        System.out.println(searchPairsBruteForce(new int[]{1,4,5,3,2,8}, new int[]{1,2,3,10,5}, 6));
+        System.out.println(searchPairsBinarySearch(new int[]{1,4,5,3,2,8}, new int[]{1,2,3,10,5}, 6));
+        System.out.println(searchPairsHash(new int[]{1,4,5,3,2,8}, new int[]{1,2,3,10,5}, 6));
+    }
+
+    private static void inputArrays() {
         Scanner scanner = new Scanner(System.in);
         int testCases = scanner.nextInt();
         String[] results = new String[testCases];
@@ -21,7 +27,7 @@ public class FindPairs {
             if (arr1 != null && arr2 != null) {
                 Arrays.sort(arr1);
                 Arrays.sort(arr2);
-                results[test] = searchPairs(arr1, arr2, x);
+                results[test] = searchPairsBruteForce(arr1, arr2, x);
             } else {
                 results[test] = "-1";
             }
@@ -44,7 +50,7 @@ public class FindPairs {
         return arr;
     }
 
-    private static String searchPairs(int[] arr1, int[] arr2, int x) {
+    private static String searchPairsBruteForce(int[] arr1, int[] arr2, int x) {
         if (arr1 == null || arr2 == null || arr1.length == 0 || arr2.length == 0) {
             return "-1";
         }
@@ -62,6 +68,55 @@ public class FindPairs {
             return "-1";
         }
 
+        return String.join(", ", pairs);
+    }
+
+    /**
+     * Second array must be ordered
+     */
+    private static String searchPairsBinarySearch(int[] arr1, int[] arr2, int x) {
+        if (arr1 == null || arr2 == null || arr1.length == 0 || arr2.length == 0) {
+            return "-1";
+        }
+
+        List<String> pairs = new ArrayList<>();
+        int temp;
+        for (int i = 0; i < arr1.length; i++) {
+            temp = Arrays.binarySearch(arr2, x - arr1[i]);
+            if (temp > 0) {
+                pairs.add(arr1[i] + " " + arr2[temp]);
+            }
+        }
+
+        if (pairs.size() == 0) {
+            return "-1";
+        }
+
+        return String.join(", ", pairs);
+    }
+
+    private static String searchPairsHash(int[] arr1, int[] arr2, int x) {
+        if (arr1 == null || arr2 == null || arr1.length == 0 || arr2.length == 0) {
+            return "-1";
+        }
+
+        HashMap<Integer, Integer> integerHashMap = new HashMap<>();
+        List<String> pairs = new ArrayList<>();
+        for (int i = 0; i < arr1.length; i++) {
+            integerHashMap.put(x - arr1[i], i);
+        }
+
+        for (int i = 0; i < arr2.length; i++) {
+            if (integerHashMap.containsKey(arr2[i])) {
+                pairs.add(arr1[integerHashMap.get(arr2[i])] + " " + arr2[i]);
+            }
+        }
+
+        if (pairs.size() == 0) {
+            return "-1";
+        }
+
+        Collections.reverse(pairs);
         return String.join(", ", pairs);
     }
 
