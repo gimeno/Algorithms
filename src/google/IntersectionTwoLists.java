@@ -48,7 +48,7 @@ public class IntersectionTwoLists {
     }
 
     /**
-     * Time: O(n^m)
+     * Time: O(n*m)
      * Space: O(n)
      */
     private static void printIntersectionBruteForce(LinkedList<Integer> list1, LinkedList<Integer> list2) {
