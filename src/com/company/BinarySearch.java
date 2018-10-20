@@ -23,16 +23,16 @@ public class BinarySearch {
     }
 
     private static int binarySearch(int[] a, int x) {
-        int low = 0;
-        int high = a.length - 1;
+        int left = 0;
+        int right = a.length - 1;
         int mid;
 
-        while (low <= high) {
-            mid = (low + high) / 2;
+        while (left <= right) {
+            mid = (left + right) / 2;
             if (a[mid] < x) {
-                low = mid + 1;
+                left = mid + 1;
             } else if (a[mid] > x) {
-                high = mid - 1;
+                right = mid - 1;
             } else {
                 return mid;
             }
